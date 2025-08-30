@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<h1>Listado de Estudiantes</h1>
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+    </tr>
+    {% for estudiante in estudiantes %}
+    <tr>
+        <td>{{ estudiante.nombre }}</td>
+        <td>{{ estudiante.apellido }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

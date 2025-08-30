@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<h1>Listado de Administradores</h1>
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+    </tr>
+    {% for administrador in administradores %}
+    <tr>
+        <td>{{ administrador.nombre }}</td>
+        <td>{{ administrador.apellido }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

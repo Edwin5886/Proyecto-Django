@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        background-color: #3774d7;
+        padding: 10px;
+        border-radius: 0;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    nav a {
+        color: #2d1e6b;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 15px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+    nav a:hover {
+        background: #e0e0ff;
+    }
+    hr {
+        border: 1px solid #ccc;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'index' %}">Home</a> |
+        <a href="{% url 'estudiantes' %}">Estudiantes</a> |
+        <a href="{% url 'administradores' %}">Administradores</a> |
+        <a href="{% url 'about' %}">Acerca de</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
