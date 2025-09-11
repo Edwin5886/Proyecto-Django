@@ -6,13 +6,6 @@ def index(request):
 def about(request):
     return render(request, 'home/about.html')
 
-def estudiantes(request):
-    estudiantes = [
-        {'nombre': 'Juan', 'apellido': 'Pérez'},
-        {'nombre': 'Ana', 'apellido': 'García'},
-    ]
-    return render(request, 'home/estudiantes.html', {'estudiantes': estudiantes})
-
 def administradores(request):
     administradores = [
         {'nombre': 'Carlos', 'apellido': 'Ramírez'},
