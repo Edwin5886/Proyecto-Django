@@ -1,0 +1,8 @@
+# Ignorar entorno virtual y archivos temporales
+Lib/
+Include/
+Scripts/
+pyvenv.cfg
+*.pyc
+__pycache__/
+db.sqlite3
