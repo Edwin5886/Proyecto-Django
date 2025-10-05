@@ -7,8 +7,6 @@ def about(request):
     return render(request, 'home/about.html')
 
 def administradores(request):
-    administradores = [
-        {'nombre': 'Carlos', 'apellido': 'Ramírez'},
-        {'nombre': 'Laura', 'apellido': 'Martínez'},
-    ]
+    from Apps.administradores.models import Administrador
+    administradores = Administrador.objects.all()
     return render(request, 'home/administradores.html', {'administradores': administradores})

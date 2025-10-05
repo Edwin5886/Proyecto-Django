@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import EstudiantePublicador, EstudianteAutorizador, Publicacion
 from .forms import EstudiantePublicadorForm, PublicacionForm
+from django.views.generic import DetailView, UpdateView
+from django.urls import reverse_lazy
+from Apps.administradores.models import Administrador
 
 
 def lista_publicadores(request):
@@ -40,3 +43,52 @@ def crear_publicacion(request):
     else:
         form = PublicacionForm()
     return render(request, 'estudiantes/crear_publicacion.html', {'form': form})
+
+
+class DetallePublicacionView(DetailView):
+    model = Publicacion
+    template_name = 'estudiantes/detalle_publicacion.html'
+    context_object_name = 'publicacion'
+
+class EditarPublicacionView(UpdateView):
+    model = Publicacion
+    fields = ['titulo', 'contenido', 'autorizador']
+    template_name = 'estudiantes/editar_publicacion.html'
+    success_url = reverse_lazy('lista_publicaciones')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Editar Publicación'
+        return context
+
+class DetalleEstudianteView(DetailView):
+    model = EstudiantePublicador
+    template_name = 'estudiantes/detalle_estudiante.html'
+    context_object_name = 'estudiante'
+
+class EditarEstudianteView(UpdateView):
+    model = EstudiantePublicador
+    fields = ['nombre', 'apellido', 'correo']
+    template_name = 'estudiantes/editar_estudiante.html'
+    success_url = reverse_lazy('lista_estudiantes')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Editar Estudiante'
+        return context
+
+class DetalleAdministradorView(DetailView):
+    model = Administrador
+    template_name = 'estudiantes/detalle_administrador.html'
+    context_object_name = 'administrador'
+
+class EditarAdministradorView(UpdateView):
+    model = Administrador
+    fields = ['nombre', 'apellido', 'email', 'telefono', 'cargo']
+    template_name = 'estudiantes/editar_administrador.html'
+    success_url = reverse_lazy('lista_administradores')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_pagina'] = 'Editar Administrador'
+        return context
