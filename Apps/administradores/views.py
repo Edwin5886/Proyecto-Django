@@ -3,12 +3,27 @@ from .models import Administrador
 from .forms import AdministradorForm
 from django.views.generic import DetailView, UpdateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
+@login_required(login_url='/usuarios/login/')
 def administradores(request):
-    administradores = Administrador.objects.all()
-    return render(request, 'home/administradores.html', {'administradores': administradores})
+    query = request.GET.get('buscar')
+    if query:
+        administradores = Administrador.objects.filter(
+            Q(nombre__icontains=query) | 
+            Q(apellido__icontains=query)
+        )
+    else:
+        administradores = Administrador.objects.all()
+    
+    return render(request, 'home/administradores.html', {
+        'administradores': administradores,
+        'query': query
+    })
 
+@login_required(login_url='/usuarios/login/')
 def crear_administrador(request):
     if request.method == 'POST':
         form = AdministradorForm(request.POST)

@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+from django.shortcuts import redirect
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lambda request: redirect('/usuarios/login/'), name='index'),  # Redirige la página principal al login
     path('home/', include('Apps.home.urls')),
     path('estudiantes/', include('Apps.estudiantes.urls')),
     path('administradores/', include('Apps.administradores.urls')),

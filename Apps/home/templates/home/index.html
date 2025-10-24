@@ -16,6 +16,15 @@
         </div>
         <!-- Masthead Subheading-->
         <p class="masthead-subheading font-weight-light mb-0">UN LUGAR DONDE ENCONTRARAS TODO</p>
+        <!-- Usuario logueado -->
+        {% if user.is_authenticated %}
+            <div class="mt-4">
+                <div class="alert alert-light d-inline-block">
+                    <i class="fas fa-user me-2"></i>
+                    <strong>Bienvenido, {{ user.first_name|default:user.username }}!</strong>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </header>
 {% endblock %}
